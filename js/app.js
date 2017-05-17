@@ -21,11 +21,11 @@ const state = {
 }
 
 function fetchUrl(url) {
-  return fetch(`${url}`)
+  return fetch(`https://accesscontrolalloworiginall.herokuapp.com/${url}`)
 }
 
 function fetchMashableArticles() {
-  return fetchUrl('http://migbylab.com/feed.json')
+  return fetchUrl('http://mashable.com/stories.json')
   .then(res => res.json())
   .then(data => {
     return data.new.map(article => {
@@ -77,11 +77,11 @@ function render(container, data) {
       <a href="#"><h1>Feedr</h1></a>
       <nav>
         <ul>
-          <li><a href="#">News Source: <span>Source Name</span></a>
+          <li><a href="#"><span>Select Source</span></a>
             <ul>
-                <li><a href="#">Source 1</a></li>
-                <li><a href="#">Source 2</a></li>
-                <li><a href="#">Source 3</a></li>
+                <li><a href="#">Mashable</a></li>
+                <li><a href="#">Reddit</a></li>
+                <li><a href="#">Digg</a></li>
             </ul>
           </li>
         </ul>
