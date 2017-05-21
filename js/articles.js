@@ -57,7 +57,7 @@ export function fetchDiggArticles() {
           return {
             image: article.content.media.images[0].url,
             title: article.content.title,
-            theme: article.canonical_channel_slug,
+            theme: article.content.tags[0].canonical_channel_slug,
             impressions: article.fb_shares.count,
             summary: article.content.description,
             link: article.content.original_url

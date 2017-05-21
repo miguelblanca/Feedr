@@ -11,8 +11,10 @@ import {fetchMashableArticles, fetchRedditArticles,fetchDiggArticles, renderArti
 
 const app = document.querySelector('#app')
 
+//Articles state object - stores articles info
+
 const state = {
-  source: 'mashable',
+  source: 'Mashable',
   articles: [
     {
       image: '',
@@ -24,12 +26,41 @@ const state = {
     }
   ]
 }
+const userSource = document.querySelector('.source')
+
+delegate('body', 'click', '.source', event => {
+
+  console.log(event.target)
+
+  const userChoice = event.target.innerText
+
+  const loading = document.querySelector('.article')
+
+  loading.innerText = "loading"
+
+  state.source = userChoice
+
+  fetchArticles(userChoice)
+    .then(articles => state.articles = articles)
+    .then(() => render(app, state))
+
+
+
+})
+
 
 
 function fetchArticles(source) {
-  if (source === 'mashable') {
-    return fetchDiggArticles() //from module articles.js
-  }
+
+
+    if (source === 'Mashable') {
+      return fetchMashableArticles() //from module articles.js
+    } else if (source === 'Reddit') {
+      return fetchRedditArticles() //from module articles.js
+    } else if(source === 'Digg') {
+      return fetchDiggArticles() //from module articles.js
+    }
+
 }
 
 fetchArticles(state.source) //news source function input
@@ -48,9 +79,9 @@ function render(container, data) {
         <ul>
           <li><a href="#"><span>Select Source</span></a>
             <ul>
-                <li><a href="#">Mashable</a></li>
-                <li><a href="#">Reddit</a></li>
-                <li><a href="#">Digg</a></li>
+                <li class="source"><a href="#">Mashable</a></li>
+                <li class="source"><a href="#">Reddit</a></li>
+                <li class="source"><a href="#">Digg</a></li>
             </ul>
           </li>
         </ul>
