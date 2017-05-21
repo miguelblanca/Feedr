@@ -75,7 +75,7 @@
 	}
 
 	function fetchMashableArticles() {
-	  return fetchUrl('http://migbylab.com/feed.json').then(function (res) {
+	  return fetchUrl('http://mashable.com/stories.json').then(function (res) {
 	    return res.json();
 	  }).then(function (data) {
 	    return data.new.map(function (article) {
@@ -110,7 +110,7 @@
 	}
 
 	function render(container, data) {
-	  container.innerHTML = '\n  <header>\n    <section class="container">\n      <a href="#"><h1>Feedr</h1></a>\n      <nav>\n        <ul>\n          <li><a href="#">News Source: <span>Source Name</span></a>\n            <ul>\n                <li><a href="#">Source 1</a></li>\n                <li><a href="#">Source 2</a></li>\n                <li><a href="#">Source 3</a></li>\n            </ul>\n          </li>\n        </ul>\n        <section id="search">\n          <input type="text" name="name" value="">\n          <a href="#"><img src="images/search.png" alt="" /></a>\n        </section>\n      </nav>\n      <div class="clearfix"></div>\n    </section>\n  </header>\n  <div id="popUp" class="loader hidden">\n    <a href="#" class="closePopUp">X</a>\n    <div class="container">\n      <h1>Article title here</h1>\n      <p>\n        Article description/content here.\n      </p>\n      <a href="#" class="popUpAction" target="_blank">Read more from source</a>\n    </div>\n  </div>\n  <section id="main" class="container">\n    ' + renderArticles(data.articles) + '\n  </section>\n  ';
+	  container.innerHTML = '\n  <header>\n    <section class="container">\n      <a href="#"><h1>Feedr</h1></a>\n      <nav>\n        <ul>\n          <li><a href="#"><span>Select Source</span></a>\n            <ul>\n                <li><a href="#">Mashable</a></li>\n                <li><a href="#">Reddit</a></li>\n                <li><a href="#">Digg</a></li>\n            </ul>\n          </li>\n        </ul>\n        <section id="search">\n          <input type="text" name="name" value="">\n          <a href="#"><img src="images/search.png" alt="" /></a>\n        </section>\n      </nav>\n      <div class="clearfix"></div>\n    </section>\n  </header>\n  <div id="popUp" class="loader hidden">\n    <a href="#" class="closePopUp">X</a>\n    <div class="container">\n      <h1>Article title here</h1>\n      <p>\n        Article description/content here.\n      </p>\n      <a href="#" class="popUpAction" target="_blank">Read more from source</a>\n    </div>\n  </div>\n  <section id="main" class="container">\n    ' + renderArticles(data.articles) + '\n  </section>\n  ';
 	}
 
 	render(app, state);
@@ -136,7 +136,7 @@
 	}
 
 	function math() {
-	  console.log('yay');
+	  console.log('test, this is just a test');
 	}
 
 /***/ })

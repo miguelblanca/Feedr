@@ -1,8 +1,13 @@
-import main, {add, substract} from './math'
 
-console.log(add(1,2))
-console.log(substract(2,1))
-main()
+// This is how to import files
+// import main, {add, substract} from './math'
+//
+// console.log(add(1,2))
+// console.log(substract(2,1))
+// main()
+
+import {fetchMashableArticles} from './fetchAricles'
+
 
 const app = document.querySelector('#app')
 
@@ -15,31 +20,12 @@ const state = {
       theme: '',
       impressions: '',
       summary: '',
-      link: '',
+      link: ''
     }
   ]
 }
 
-function fetchUrl(url) {
-  return fetch(`https://accesscontrolalloworiginall.herokuapp.com/${url}`)
-}
-
-function fetchMashableArticles() {
-  return fetchUrl('http://mashable.com/stories.json')
-  .then(res => res.json())
-  .then(data => {
-    return data.new.map(article => {
-      return {
-        image: article.feature_image,
-        title: article.display_title,
-        theme: article.channel,
-        impressions: article.formatted_shares,
-        summary: article.excerpt,
-        link: article.short_url
-      }
-    })
-  })
-}
+//from the module fetchArticles.js 
 
 function fetchArticles(source) {
   if (source === 'mashable') {
@@ -66,7 +52,7 @@ function renderArticles(articles) {
       </section>
       <div class="clearfix"></div>
     </article>
-  `)
+  `).join('\n')
 }
 
 
