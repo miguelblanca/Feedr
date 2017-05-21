@@ -36,14 +36,16 @@ delegate('body', 'click', '.source', event => {
 
   const loading = document.querySelector('.article')
 
-  loading.innerText = "loading"
+  loading.innerHTML = `
+  <div class="loader">
+  </div>
+  `
 
   state.source = userChoice
 
   fetchArticles(userChoice)
     .then(articles => state.articles = articles)
     .then(() => render(app, state))
-
 
 
 })
@@ -93,16 +95,16 @@ function render(container, data) {
       <div class="clearfix"></div>
     </section>
   </header>
-  <div id="popUp" class="loader hidden">
-    <a href="#" class="closePopUp">X</a>
-    <div class="container">
-      <h1>Article title here</h1>
-      <p>
-        Article description/content here.
-      </p>
-      <a href="#" class="popUpAction" target="_blank">Read more from source</a>
+    <div id="popUp" class="loader hidden">
+      <a href="#" class="closePopUp">X</a>
+      <div class="container">
+        <h1>Article title here</h1>
+        <p>
+          Article description/content here.
+        </p>
+        <a href="#" class="popUpAction" target="_blank">Read more from source</a>
+      </div>
     </div>
-  </div>
   <section id="main" class="container">
     ${renderArticles(data.articles)}
   </section>

@@ -5,37 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+.loader {
+  background-image: url('http://www.gladstonemorgan.com/wp-content/themes/gladstone-child/images/loading.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: 0 100;
+  margin: 5.3em 12.2em;
+}
+.article {
+  z-index: -1;
+
+}
+  </style>
 </head>
 <body>
-  <div id="data">
-Fuckers!
+  <div class="loader">
   </div>
-<script>
-
-function fetchUrl(url) {
-  return fetch(`https://accesscontrolalloworiginall.herokuapp.com/${url}`)
-}
-
-function fetchDiggArticles() {
-  return fetchUrl('http://digg.com/api/news/popular.json')
-  .then(res => res.json())
-  .then(data => {
-    console.log(data)
-    return data.data.feed.map(article => {
-          return {
-            image: article.content.media.images[0].url,
-            title: article.content.title,
-            theme: article.canonical_channel_slug,
-            impressions: article.fb_shares.count,
-            summary: article.content.description,
-            link: article.content.original_url
-        }
-    })
-  })
-}
-
-fetchDiggArticles()
-
-</script>
+  <article class="article">
+      <section class="featuredImage">
+        <img src="http://static.digg.com/images/60b1a5af33ec421bb345c5d48aca503e_5cd0f4657be14c6b8a8c6ff87ab8773e_1_iphone_stream.jpeg" alt="">
+      </section>
+      <section class="articleContent">
+          <a href="http://digg.com/2017/turkey-tow-truck"><h3>Turkey's Brilliant Tow Trucks Put The US To Shame</h3></a>
+          <h6>cars</h6>
+      </section>
+      <section class="impressions">
+        421
+      </section>
+      <div class="clearfix"></div>
+    </article>
 </body>
 </html>

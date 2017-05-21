@@ -185,10 +185,23 @@ nav ul ul li {
   margin-top: 65px;
 }
 
+.loader {
+  background-image: url('http://www.gladstonemorgan.com/wp-content/themes/gladstone-child/images/loading.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: 5.3em 15.2em;
+
+}
+
 /* Individual Article Styling */
 .article {
   border-bottom: 1px solid #ccc;
   transition: 0.2s all;
+  z-index: -1;
 }
 
 .article:hover {
