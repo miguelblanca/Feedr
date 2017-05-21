@@ -6,7 +6,7 @@
 // console.log(substract(2,1))
 // main()
 
-import {fetchMashableArticles} from './fetchAricles'
+import {fetchMashableArticles, fetchRedditArticles, renderArticles} from './articles'
 
 
 const app = document.querySelector('#app')
@@ -25,36 +25,19 @@ const state = {
   ]
 }
 
-//from the module fetchArticles.js 
 
 function fetchArticles(source) {
   if (source === 'mashable') {
-    return fetchMashableArticles()
+    return fetchRedditArticles() //from module articles.js
   }
 }
 
-fetchArticles(state.source)
+fetchArticles(state.source) //news source function input
 .then(articles => state.articles = articles)
 .then(() => render(app, state))
 
-function renderArticles(articles) {
-  return articles.map(article => `
-    <article class="article">
-      <section class="featuredImage">
-        <img src="${article.image}" alt="" />
-      </section>
-      <section class="articleContent">
-          <a href="${article.link}"><h3>${article.title}</h3></a>
-          <h6>${article.theme}</h6>
-      </section>
-      <section class="impressions">
-        ${article.impressions}
-      </section>
-      <div class="clearfix"></div>
-    </article>
-  `).join('\n')
-}
 
+//Renders the main content of the page. Articles get rendered in fetch articles module
 
 function render(container, data) {
   container.innerHTML = `
@@ -95,4 +78,4 @@ function render(container, data) {
   `
 }
 
-render(app, state)
+render(app, state) // render function gets called
