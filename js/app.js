@@ -6,7 +6,7 @@
 // console.log(substract(2,1))
 // main()
 
-import {fetchMashableArticles, fetchRedditArticles, renderArticles} from './articles'
+import {fetchMashableArticles, fetchRedditArticles,fetchDiggArticles, renderArticles } from './articles'
 
 
 const app = document.querySelector('#app')
@@ -28,7 +28,7 @@ const state = {
 
 function fetchArticles(source) {
   if (source === 'mashable') {
-    return fetchRedditArticles() //from module articles.js
+    return fetchDiggArticles() //from module articles.js
   }
 }
 

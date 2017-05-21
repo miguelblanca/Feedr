@@ -10,6 +10,7 @@ export function fetchUrl(url) {
   return fetch(`https://accesscontrolalloworiginall.herokuapp.com/${url}`)
 }
 
+
 export function fetchMashableArticles() {
   return fetchUrl('http://mashable.com/stories.json')
   .then(res => res.json())
@@ -42,6 +43,24 @@ export function fetchRedditArticles() {
             impressions: article.data.score,
             summary: article.data.spoiler,
             link: article.data.url
+        }
+    })
+  })
+}
+
+export function fetchDiggArticles() {
+  return fetchUrl('http://digg.com/api/news/popular.json')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+    return data.data.feed.map(article => {
+          return {
+            image: article.content.media.images[0].url,
+            title: article.content.title,
+            theme: article.canonical_channel_slug,
+            impressions: article.fb_shares.count,
+            summary: article.content.description,
+            link: article.content.original_url
         }
     })
   })

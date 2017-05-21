@@ -16,25 +16,25 @@ function fetchUrl(url) {
   return fetch(`https://accesscontrolalloworiginall.herokuapp.com/${url}`)
 }
 
-function fetchredditArticles() {
-  return fetchUrl('https://www.reddit.com/top.json')
+function fetchDiggArticles() {
+  return fetchUrl('http://digg.com/api/news/popular.json')
   .then(res => res.json())
   .then(data => {
     console.log(data)
-    return data.data.children.map(article => {
+    return data.data.feed.map(article => {
           return {
-            image: data.thumbnail,
-            title: data.title,
-            theme: data.subreddit,
-            impressions: data.score,
-            summary: data.spoiler,
-            link: data.url
+            image: article.content.media.images[0].url,
+            title: article.content.title,
+            theme: article.canonical_channel_slug,
+            impressions: article.fb_shares.count,
+            summary: article.content.description,
+            link: article.content.original_url
         }
     })
   })
 }
 
-fetchredditArticles()
+fetchDiggArticles()
 
 </script>
 </body>
